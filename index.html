@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,16 +10,13 @@
   <style>
     body {
       font-family: 'Share Tech Mono', monospace;
-      background-color: #0d0d0d;
-      color: #dcdcdc;
+      background: url('bg.jpg') center center / cover no-repeat fixed;
+      color: #eaeaea;
     }
     .card {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(8px);
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
-    }
-    .contact-link:hover {
-      background-color: rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
     }
     .loader-bar {
       width: 40%;
@@ -32,36 +29,44 @@
       50% { width: 80%; }
       100% { width: 0%; }
     }
+    .volume-btn svg {
+      transition: opacity 0.3s ease;
+    }
   </style>
 </head>
 <body class="antialiased">
 
 <audio id="background-music" loop>
   <source src="music.mp3" type="audio/mpeg" />
-  Error
+  error
 </audio>
 
+<!-- стартовый экран -->
 <div id="play-prompt" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 cursor-pointer">
   <div class="text-center text-white animate-pulse">
-    <p class="text-2xl">[ START ]</p>
-    <p class="text-sm opacity-70">Press To Start</p>
+    <p class="text-2xl">[ НАЧАТЬ ]</p>
+    <p class="text-sm opacity-70">Нажми для запуска</p>
   </div>
 </div>
 
-<div class="flex items-center justify-center min-h-screen p-4">
-  <div class="card w-full max-w-md rounded-lg p-8 relative">
 
-    <div class="absolute top-5 left-5 cursor-pointer" onclick="toggleVolume()">
-      <svg id="volume-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16">
-        <path d="M11.536 14.01..."/>
-      </svg>
-      <svg id="volume-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 16 16" style="display:none;">
-        <path d="M6.717 3.55..."/>
-      </svg>
-    </div>
+<div class="absolute top-4 left-4 z-50 volume-btn cursor-pointer text-white" onclick="toggleVolume()">
+  <svg id="volume-on" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.707.707z"/>
+    <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89l.707.707z"/>
+    <path d="M8.717 3.55A.5.5 0 0 1 9 4v8a.5.5 0 0 1-.812.39L5.825 10.5H3.5A.5.5 0 0 1 3 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+  </svg>
+  <svg id="volume-off" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16" style="display:none;">
+    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L11.207 8.5l2.647 2.646a.5.5 0 0 1-.708.708L10.5 9.207l-2.646 2.647a.5.5 0 0 1-.708-.708L9.793 8.5 7.146 5.854a.5.5 0 1 1 .708-.708L10.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+  </svg>
+</div>
+
+
+<div class="flex items-center justify-center min-h-screen p-4">
+  <div class="card w-full max-w-md rounded-lg p-8">
 
     <div class="text-center">
-      <img src="./avatar.jpg" alt="Avatar" class="w-28 h-28 rounded-full object-cover mx-auto" />
+      <img src="./avatar.jpg" class="w-28 h-28 rounded-full mx-auto object-cover" alt="Avatar">
       <h1 class="text-2xl mt-4 tracking-widest">waterrcore</h1>
       <p class="text-sm opacity-70">Artist, IT programmer.</p>
     </div>
@@ -71,22 +76,22 @@
     </div>
 
     <div class="space-y-3 text-sm">
-      <a href="mailto:nikolmakisheva@gmail.com" class="contact-link flex justify-between p-3 rounded-md">
+      <a href="mailto:nikolmakisheva@gmail.com" class="flex justify-between p-3 rounded-md hover:bg-white/10">
         <span>EMAIL:</span><span>[nikolmakisheva@gmail.com]</span>
       </a>
-      <a href="https://t.me/waterrcore" target="_blank" class="contact-link flex justify-between p-3 rounded-md">
+      <a href="https://t.me/waterrcore" target="_blank" class="flex justify-between p-3 rounded-md hover:bg-white/10">
         <span>TELEGRAM:</span><span>[@waterrcore]</span>
       </a>
-      <a href="#" class="contact-link flex justify-between p-3 rounded-md">
-        <span>DISCORD:</span><span>[waterrcore]</span>
+      <a href="#" class="flex justify-between p-3 rounded-md hover:bg-white/10">
+        <span>DISCORD:</span><span>[waterrcore#0001]</span>
       </a>
-      <a href="https://github.com/waterrcore" target="_blank" class="contact-link flex justify-between p-3 rounded-md">
+      <a href="https://github.com/waterrcore" target="_blank" class="flex justify-between p-3 rounded-md hover:bg-white/10">
         <span>GITHUB:</span><span>[waterrcore]</span>
       </a>
     </div>
 
     <div class="mt-8 text-xs text-center opacity-40 tracking-widest">
-      <p>// THX FOR READING! //</p>
+      <p>// TO BUY A CUSTOMIZED SITE FOR YOU DM IN DS //</p>
       <div class="w-full bg-gray-700/50 rounded-full h-0.5 mt-3">
         <div class="loader-bar"></div>
       </div>
